@@ -2,6 +2,8 @@
 
 [![codecov](https://codecov.io/gh/jeremie-gauthier/ts-utils/graph/badge.svg?token=41WLAHPFCT)](https://codecov.io/gh/jeremie-gauthier/ts-utils)
 
+[![view - Documentation](https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge)](https://jeremie-gauthier.github.io/ts-utils/ 'Go to project documentation')
+
 A collection of TypeScript utils functions with no external dependencies
 
 # Introduction
