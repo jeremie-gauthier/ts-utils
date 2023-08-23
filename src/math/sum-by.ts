@@ -9,7 +9,7 @@ const INITIAL_VALUE = 0;
 export const sumBy = <Item>(
   iteratee: (item: Item) => number,
   ...numbers: Item[]
-) =>
+): number =>
   numbers.reduce(
     (previousValue, currentValue) => previousValue + iteratee(currentValue),
     INITIAL_VALUE,
