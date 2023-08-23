@@ -4,6 +4,7 @@ module.exports = {
   globals: {
     __dirname: true,
     module: true,
+    window: true,
   },
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
