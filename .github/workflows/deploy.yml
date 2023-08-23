@@ -12,8 +12,7 @@ on:
     branches:
       - 'main'
     paths:
-      - '.github/workflows/*.yml'
-      - 'src/**/*'
+      - '.github/workflows/deploy.yml'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
