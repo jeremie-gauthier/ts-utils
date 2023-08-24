@@ -15,7 +15,7 @@ module.exports = {
     'plugin:unicorn/all',
   ],
   rules: {
-    'id-length': 'error',
+    'id-length': ['error', { exceptionPatterns: ['_'] }],
   },
   parserOptions: {
     ecmaVersion: 'latest',
