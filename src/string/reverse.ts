@@ -1,7 +1,7 @@
 /**
- * Reverse a string
- * @param string the string to reverse
- * @returns the reversed string
+ * Reverse a string.
+ * @param string The string to reverse.
+ * @returns The reversed string.
  */
 export const reverse = (string: string): string =>
   [...string].reverse().join('');
