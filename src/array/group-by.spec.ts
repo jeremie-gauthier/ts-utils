@@ -14,7 +14,7 @@ describe('array: groupBy', () => {
       5: ['hello', 'world'],
     };
 
-    expect(result).toEqual(expected);
+    expect(result).toStrictEqual(expected);
   });
 
   it('should transform keys by running iteratee on elements (numbers)', () => {
@@ -23,6 +23,6 @@ describe('array: groupBy', () => {
     const result = groupBy(array, numberIteratee);
     const expected = { 4: [4.2], 6: [6.1, 6.3] };
 
-    expect(result).toEqual(expected);
+    expect(result).toStrictEqual(expected);
   });
 });
