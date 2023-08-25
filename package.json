@@ -1,5 +1,8 @@
 {
   "name": "ts-utils",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "docgen": "typedoc",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
