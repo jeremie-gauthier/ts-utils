@@ -5,5 +5,5 @@
  * @returns The object created from key-values entries.
  */
 export const fromEntries = <K extends string | number | symbol, V>(
-  entries: (readonly [K, V])[],
+  entries: Readonly<[K, V]>[],
 ): Record<K, V> => Object.fromEntries(entries) as Record<K, V>;

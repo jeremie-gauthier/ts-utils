@@ -5,5 +5,5 @@
  * @returns An array of (key, value) tuples.
  */
 export const entries = <K extends string | number | symbol, V>(
-  object: Record<K, V>,
+  object: Readonly<Record<K, V>>,
 ): [K, V][] => Object.entries(object) as [K, V][];
