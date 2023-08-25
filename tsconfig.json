@@ -108,6 +108,8 @@
   },
   "typedocOptions": {
     "entryPoints": ["src/index.ts"],
-    "out": "docs"
+    "out": "docs",
+    "plugin": ["typedoc-theme-hierarchy"],
+    "theme": "hierarchy"
   }
 }
