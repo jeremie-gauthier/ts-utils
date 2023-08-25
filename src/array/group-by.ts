@@ -1,4 +1,4 @@
-type GroupByIterateeReturnType = string | number;
+type GroupByIterateeReturnType = string | number | symbol;
 
 /**
  * Creates an object composed of keys generated from the results of running each element of array through iteratee.
