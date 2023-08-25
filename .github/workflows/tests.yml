@@ -16,10 +16,6 @@ jobs:
     name: Test Library
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version-file: 'package.json'
-          cache: 'npm'
       - name: Install dependencies
         run: npm install
       - name: Run tests and collect coverage
