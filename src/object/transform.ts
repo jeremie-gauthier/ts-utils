@@ -1,6 +1,13 @@
+import type { RecordKey } from '../types/object.type';
 import { entries } from './entries';
 
-type Iteratee<Key extends string | number | symbol, Value, Accumulator> = (
+/**
+ * Iteratee Type.
+ * @param Key Type for the entry's `key` passed in params.
+ * @param Value Type for the entry's `value` passed in params.
+ * @param Accumulator A user-defined type where to accumulate the transformations.
+ */
+export type Iteratee<Key extends RecordKey, Value, Accumulator> = (
   accumulator: Accumulator,
   key: Key,
   value: Value,
@@ -14,11 +21,7 @@ type Iteratee<Key extends string | number | symbol, Value, Accumulator> = (
  * @param accumulator The custom accumulator value.
  * @returns The accumulated value.
  */
-export const transform = <
-  Key extends string | number | symbol,
-  Value,
-  Accumulator,
->(
+export const transform = <Key extends RecordKey, Value, Accumulator>(
   object: Readonly<Record<Key, Value>>,
   iteratee: Iteratee<Key, Value, Accumulator>,
   accumulator: Accumulator,

@@ -1,4 +1,4 @@
-type GroupByIterateeReturnType = string | number | symbol;
+import type { RecordKey } from '../types/object.type';
 
 /**
  * Creates an object composed of keys generated from the results of running each element of array through iteratee.
@@ -6,11 +6,11 @@ type GroupByIterateeReturnType = string | number | symbol;
  * @param iteratee The iteratee to transform keys.
  * @returns The composed aggregate object.
  */
-export const groupBy = <T, P extends (_: T) => GroupByIterateeReturnType>(
+export const groupBy = <T, P extends (_: T) => RecordKey>(
   array: T[],
   iteratee: P,
-): Record<GroupByIterateeReturnType, T[]> => {
-  const aggregate: Partial<Record<GroupByIterateeReturnType, T[]>> = {};
+): Record<RecordKey, T[]> => {
+  const aggregate: Partial<Record<RecordKey, T[]>> = {};
 
   for (const item of array) {
     const iterateeKey = iteratee(item);
@@ -23,5 +23,5 @@ export const groupBy = <T, P extends (_: T) => GroupByIterateeReturnType>(
     }
   }
 
-  return aggregate as Record<GroupByIterateeReturnType, T[]>;
+  return aggregate as Record<RecordKey, T[]>;
 };

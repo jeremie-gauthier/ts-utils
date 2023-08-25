@@ -1,4 +1,7 @@
 export { entries } from './entries';
 export { fromEntries } from './from-entries';
-export { map } from './map';
-export { transform } from './transform';
+export { map, type Iteratee as ObjectMapIteratee } from './map';
+export {
+  transform,
+  type Iteratee as ObjectTransformIteratee,
+} from './transform';

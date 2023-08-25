@@ -1,1 +1,1 @@
-export { createURL } from './create-url';
+export { createURL, type URLParameters } from './create-url';

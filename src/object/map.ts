@@ -1,10 +1,17 @@
+import type { RecordKey } from '../types/object.type';
 import { entries } from './entries';
 import { fromEntries } from './from-entries';
 
-type Iteratee<
-  Key extends string | number | symbol,
+/**
+ * Iteratee Type.
+ * @param Key Type for the entry's `key` passed in params.
+ * @param Value Type for the entry's `value` passed in params.
+ * @param TransformedResult Return type of the iteratee. Must be an array of 2 elements [key, value].
+ */
+export type Iteratee<
+  Key extends RecordKey,
   Value,
-  TransformedResult extends [string | number | symbol, unknown],
+  TransformedResult extends [RecordKey, unknown],
 > = ([key, value]: [Key, Value]) => TransformedResult;
 
 /**
@@ -14,9 +21,9 @@ type Iteratee<
  * @returns Returns the new mapped object.
  */
 export const map = <
-  Key extends string | number | symbol,
+  Key extends RecordKey,
   Value,
-  TransformedKey extends string | number | symbol,
+  TransformedKey extends RecordKey,
   TransformedValue,
 >(
   object: Readonly<Record<Key, Value>>,
