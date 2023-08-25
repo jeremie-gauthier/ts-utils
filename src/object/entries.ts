@@ -4,6 +4,6 @@
  * @param object Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
  * @returns An array of (key, value) tuples.
  */
-export const entries = <K extends string | number, V>(
+export const entries = <K extends string | number | symbol, V>(
   object: Record<K, V>,
 ): [K, V][] => Object.entries(object) as [K, V][];
