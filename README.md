@@ -1,9 +1,8 @@
 # ts-utils
 
 [![codecov](https://codecov.io/gh/jeremie-gauthier/ts-utils/graph/badge.svg?token=41WLAHPFCT)](https://codecov.io/gh/jeremie-gauthier/ts-utils)
+[![Documentation](https://jergauth-ts-utils.s3.eu-west-3.amazonaws.com/coverage.svg)](https://jeremie-gauthier.github.io/ts-utils/ 'Go to project documentation')
 [![Known Vulnerabilities](https://snyk.io/test/github/jeremie-gauthier/ts-utils/badge.svg)](https://snyk.io/test/github/jeremie-gauthier/ts-utils)
-
-[![view - Documentation](https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge)](https://jeremie-gauthier.github.io/ts-utils/ 'Go to project documentation')
 
 A collection of TypeScript utils functions with no external dependencies
 
