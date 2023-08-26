@@ -115,6 +115,6 @@
       "typedoc-plugin-coverage"
     ],
     "theme": "hierarchy",
-    "coverageLabel": "Documentation"
+    "coverageLabel": "doccov"
   }
 }
