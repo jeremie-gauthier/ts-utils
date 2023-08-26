@@ -1,13 +1,11 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: GH-Pages CD
 
 on:
   workflow_run:
-    workflows: [Run Tests]
+    workflows: [Tests CI]
     types:
       - completed
 
-  # Runs on pushes targeting the default branch
   push:
     branches:
       - 'main'
@@ -60,7 +58,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          # Upload entire repository
+          # Upload entire docs/ folder
           path: 'docs/'
       - name: Deploy to GitHub Pages
         id: deployment
