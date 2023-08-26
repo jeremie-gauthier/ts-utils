@@ -120,6 +120,9 @@
     "validation": {
       "notDocumented": true
     },
-    "treatValidationWarningsAsErrors": true
+    "treatValidationWarningsAsErrors": true,
+    "navigationLinks": {
+      "Github": "https://github.com/jeremie-gauthier/ts-utils"
+    }
   }
 }
