@@ -1,7 +1,7 @@
 # ts-utils
 
 [![codecov](https://codecov.io/gh/jeremie-gauthier/ts-utils/graph/badge.svg?token=41WLAHPFCT)](https://codecov.io/gh/jeremie-gauthier/ts-utils)
-[![Documentation](https://jergauth-ts-utils.s3.eu-west-3.amazonaws.com/coverage.svg)](https://jeremie-gauthier.github.io/ts-utils/ 'Go to project documentation')
+[![Documentation](https://d3kup74i7j0vc0.cloudfront.net/coverage.svg)](https://jeremie-gauthier.github.io/ts-utils/ 'Go to project documentation')
 [![Known Vulnerabilities](https://snyk.io/test/github/jeremie-gauthier/ts-utils/badge.svg)](https://snyk.io/test/github/jeremie-gauthier/ts-utils)
 
 ![Tests CI](https://github.com/jeremie-gauthier/ts-utils/actions/workflows/tests.yml/badge.svg)
