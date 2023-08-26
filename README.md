@@ -7,7 +7,9 @@
 ![Tests CI](https://github.com/jeremie-gauthier/ts-utils/actions/workflows/tests.yml/badge.svg)
 ![gh-pages CD](https://github.com/jeremie-gauthier/ts-utils/actions/workflows/deploy.yml/badge.svg)
 
-A collection of TypeScript utils functions with no external dependencies
+A collection of TypeScript utils functions with no external dependencies.
+
+[Documentation](https://jeremie-gauthier.github.io/ts-utils/)
 
 # Introduction
 
