@@ -115,6 +115,11 @@
       "typedoc-plugin-coverage"
     ],
     "theme": "hierarchy",
-    "coverageLabel": "doccov"
+    "coverageLabel": "doccov",
+    "requiredToBeDocumented": ["Function", "Parameter", "TypeParameter"],
+    "validation": {
+      "notDocumented": true
+    },
+    "treatValidationWarningsAsErrors": true
   }
 }
