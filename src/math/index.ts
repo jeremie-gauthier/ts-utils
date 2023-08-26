@@ -1,2 +1,2 @@
 export { sum } from './sum';
-export { sumBy } from './sum-by';
+export { sumBy, type Iteratee as SumByIteratee } from './sum-by';

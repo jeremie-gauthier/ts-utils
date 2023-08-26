@@ -1,8 +1,17 @@
 import { entries } from '../object/entries';
 import type { RecordKey } from '../types/object.type';
 
+/**
+ * URL parameters object type.
+ */
 export type URLParameters = Record<RecordKey, string | number>;
 
+/**
+ * Create an URL (href) string from dynamic values.
+ * @param baseURL The base URL that prefixed the parameters.
+ * @param parameters The parameters of the URL.
+ * @returns An href string resulting of the concatenation of the baseURL and its parameters.
+ */
 export const createURL = (
   baseURL: string,
   parameters: Readonly<URLParameters>,
