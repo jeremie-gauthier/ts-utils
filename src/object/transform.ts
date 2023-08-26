@@ -3,9 +3,14 @@ import { entries } from './entries';
 
 /**
  * Iteratee Type.
- * @param Key Type for the entry's `key` passed in params.
- * @param Value Type for the entry's `value` passed in params.
- * @param Accumulator A user-defined type where to accumulate the transformations.
+ * @param accumulator The custom accumulator value.
+ * @param key An `object` entry key.
+ * @param value An `object` entry value.
+ * @param object The object being iterated.
+ * @template Key Type for the entry's `key` passed in params.
+ * @template Value Type for the entry's `value` passed in params.
+ * @template Accumulator A user-defined type where to accumulate the transformations.
+ * @returns
  */
 export type Iteratee<Key extends RecordKey, Value, Accumulator> = (
   accumulator: Accumulator,
@@ -19,6 +24,9 @@ export type Iteratee<Key extends RecordKey, Value, Accumulator> = (
  * @param object The object to iterate over.
  * @param iteratee The function invoked per iteration.
  * @param accumulator The custom accumulator value.
+ * @template Key Type for the entry's `key` passed in params.
+ * @template Value Type for the entry's `value` passed in params.
+ * @template Accumulator A user-defined type where to accumulate the transformations.
  * @returns The accumulated value.
  */
 export const transform = <Key extends RecordKey, Value, Accumulator>(
