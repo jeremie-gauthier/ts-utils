@@ -17,6 +17,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -39,10 +42,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::018550518795:role/GitHubAction-AssumeRoleWithAction
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
       - name: Install dependencies
         run: npm install
       - name: Generate documentation
         run: npm run docgen
+      - name: Upload documentation coverage to AWS S3
+        run: |
+          aws s3 cp docs/coverage.svg ${{ secrets.AWS_BUCKET }}/coverage.svg --acl public-read
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
