@@ -1,4 +1,3 @@
-import type { RecordKey } from '../types/object.type';
 import { entries } from './entries';
 import { fromEntries } from './from-entries';
 
@@ -11,9 +10,9 @@ import { fromEntries } from './from-entries';
  * @returns The transformation of the `entry` in the same shape (key-value pair).
  */
 export type Iteratee<
-  Key extends RecordKey,
+  Key extends keyof any,
   Value,
-  TransformedResult extends [RecordKey, unknown],
+  TransformedResult extends [keyof any, unknown],
 > = (entry: [Key, Value]) => TransformedResult;
 
 /**
@@ -27,9 +26,9 @@ export type Iteratee<
  * @returns Returns the new mapped object.
  */
 export const map = <
-  Key extends RecordKey,
+  Key extends keyof any,
   Value,
-  TransformedKey extends RecordKey,
+  TransformedKey extends keyof any,
   TransformedValue,
 >(
   object: Readonly<Record<Key, Value>>,

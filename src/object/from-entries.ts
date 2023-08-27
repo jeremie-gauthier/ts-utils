@@ -1,5 +1,3 @@
-import type { RecordKey } from '../types/object.type';
-
 /**
  * Returns an object created by key-value entries for properties and methods.
  * (Note: This is just a typed wrapper around the native Object.fromEntries method)
@@ -8,6 +6,6 @@ import type { RecordKey } from '../types/object.type';
  * @template V Type of the values that composed the `object`.
  * @returns The object created from key-values entries.
  */
-export const fromEntries = <K extends RecordKey, V>(
+export const fromEntries = <K extends keyof any, V>(
   entries: Readonly<[K, V]>[],
 ): Record<K, V> => Object.fromEntries(entries) as Record<K, V>;

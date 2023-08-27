@@ -1,5 +1,3 @@
-import type { RecordKey } from '../types/object.type';
-
 /**
  * Returns the names of the enumerable string properties and methods of an object.
  * (Note: This is just a typed wrapper around the native Object.keys method)
@@ -8,6 +6,6 @@ import type { RecordKey } from '../types/object.type';
  * @template V Type of the values that composed the `object`.
  * @returns An array of keys.
  */
-export const keysOf = <K extends RecordKey, V>(
+export const keysOf = <K extends keyof any, V>(
   object: Readonly<Record<K, V>>,
 ): (keyof typeof object)[] => Object.keys(object) as (keyof typeof object)[];

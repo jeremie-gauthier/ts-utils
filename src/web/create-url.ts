@@ -1,10 +1,9 @@
 import { entries } from '../object/entries';
-import type { RecordKey } from '../types/object.type';
 
 /**
  * URL parameters object type.
  */
-export type URLParameters = Record<RecordKey, string | number>;
+export type URLParameters = Record<keyof any, string | number>;
 
 /**
  * Create an URL (href) string from dynamic values.

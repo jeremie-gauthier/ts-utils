@@ -1,11 +1,9 @@
-import type { RecordKey } from '../types/object.type';
-
 /**
  * Iteratee Type.
  * @param item An element of the `array`.
  * @template Item Type for the item passed in params.
  */
-export type Iteratee<Item> = (item: Item) => RecordKey;
+export type Iteratee<Item> = (item: Item) => keyof any;
 
 /**
  * Creates an object composed of keys generated from the results of running each element of array through iteratee.
@@ -17,8 +15,8 @@ export type Iteratee<Item> = (item: Item) => RecordKey;
 export const groupBy = <Item>(
   array: Item[],
   iteratee: Iteratee<Item>,
-): Record<RecordKey, Item[]> => {
-  const aggregate: Partial<Record<RecordKey, Item[]>> = {};
+): Record<keyof any, Item[]> => {
+  const aggregate: Partial<Record<keyof any, Item[]>> = {};
 
   for (const item of array) {
     const iterateeKey = iteratee(item);
@@ -31,5 +29,5 @@ export const groupBy = <Item>(
     }
   }
 
-  return aggregate as Record<RecordKey, Item[]>;
+  return aggregate as Record<keyof any, Item[]>;
 };

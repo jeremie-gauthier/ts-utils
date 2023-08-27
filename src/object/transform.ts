@@ -1,4 +1,3 @@
-import type { RecordKey } from '../types/object.type';
 import { entries } from './entries';
 
 /**
@@ -12,7 +11,7 @@ import { entries } from './entries';
  * @template Accumulator A user-defined type where to accumulate the transformations.
  * @returns
  */
-export type Iteratee<Key extends RecordKey, Value, Accumulator> = (
+export type Iteratee<Key extends keyof any, Value, Accumulator> = (
   accumulator: Accumulator,
   key: Key,
   value: Value,
@@ -29,7 +28,7 @@ export type Iteratee<Key extends RecordKey, Value, Accumulator> = (
  * @template Accumulator A user-defined type where to accumulate the transformations.
  * @returns The accumulated value.
  */
-export const transform = <Key extends RecordKey, Value, Accumulator>(
+export const transform = <Key extends keyof any, Value, Accumulator>(
   object: Readonly<Record<Key, Value>>,
   iteratee: Iteratee<Key, Value, Accumulator>,
   accumulator: Accumulator,
