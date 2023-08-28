@@ -46,6 +46,9 @@ const PRE_PROCESSING_PIPELINE = [
  * Converts string to snake case.
  * @param string The string to convert.
  * @returns Returns the snake cased string.
+ * @example
+ * snakeCase("TypeScript");
+ * // => "type_script"
  */
 export const snakeCase = (string: string): string => {
   const preProcessedString = PRE_PROCESSING_PIPELINE.reduce(
