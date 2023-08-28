@@ -18,7 +18,18 @@ This library is **free from external dependencies**. Every utils can be copy/pas
 
 ## Technical
 
-For this project I've setup **3 CI/CD workflows**:
+### Code
+
+The project is split in domain modules. You'll find every utils functions for `string` manipulation under the **string** module, `number` under the **number** module and so on.
+
+I'm applying a **strict level of typing**. Check out my [tsconfig](tsconfig.json) and my [eslint](.eslintrc.cjs) config files.
+
+### CI/CD
+
+Prior to everything, a **git pre-push hook** takes care of running essentials check before proceding to push.
+This allow early catch of errors and faster iterations.
+
+The project contains **3 CI/CD workflows**:
 
 1. [Tests CI](.github/workflows/tests.yml): is a **CI workflow** that is responsible of **running the unit tests** ([jest](https://jestjs.io/)). After what a coverage report is issued and then uploaded to [codecov](https://app.codecov.io/gh/jeremie-gauthier/ts-utils).
    _This workflow runs whenever a new utilitary function is added to the project and pushed to the `main` branch._
