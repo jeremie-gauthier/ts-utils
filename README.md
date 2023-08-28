@@ -11,7 +11,20 @@ A collection of TypeScript utils functions with no external dependencies.
 
 [Documentation](https://jeremie-gauthier.github.io/ts-utils/)
 
-# Introduction
+## Introduction
 
 This is a personal collection of utility functions written in **TypeScript**.
 This library is **free from external dependencies**. Every utils can be copy/paste to different project with the guarantee to work as-is.
+
+## Technical
+
+For this project I've setup **3 CI/CD workflows**:
+
+1. [Tests CI](.github/workflows/tests.yml): is a **CI workflow** that is responsible of **running the unit tests** ([jest](https://jestjs.io/)). After what a coverage report is issued and then uploaded to [codecov](https://app.codecov.io/gh/jeremie-gauthier/ts-utils).
+   _This workflow runs whenever a new utilitary function is added to the project and pushed to the `main` branch._
+
+2. [GH-Pages CD](.github/workflows/docs.yml): is a **CD workflow** that is responsible of **deploying the [static website for documentation](https://jeremie-gauthier.github.io/ts-utils/index.html)**. The documentation is hosted on [Github Pages](https://pages.github.com/).
+   _This workflow runs only upon successful completion of the [Tests CI](.github/workflows/tests.yml) one._
+
+3. [Infra Stack CD](.github/workflows/stack.yml): is a **CD workflow** that is responsible of **deploying an AWS Stack** with [Cloudformation](https://aws.amazon.com/fr/cloudformation/) (IaC solution).
+   _This workflow runs in standalone, everytime a change is made to the stack.yml config file and pushed to the `main` branch._
