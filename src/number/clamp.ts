@@ -8,5 +8,7 @@
  * clamp(42, 30, 40);
  * // => 40
  */
-export const clamp = (number: number, lower: number, upper: number): number =>
-  Math.min(upper, Math.max(lower, number));
+export const clamp = (number: number, lower: number, upper: number): number => {
+  const [min, max] = lower <= upper ? [lower, upper] : [upper, lower];
+  return Math.min(max, Math.max(min, number));
+};
