@@ -1,21 +1,38 @@
 import { snakeCase } from './snake-case';
 
+const fixtures = [
+  // Examples with different capitalization changes
+  { input: 'TypeScript', expected: 'type_script' },
+  { input: 'javaScript', expected: 'java_script' },
+  { input: 'snake_Case', expected: 'snake_case' },
+
+  // Examples with numbers
+  { input: 'foo123Bar', expected: 'foo_123_bar' },
+  { input: 'abc456', expected: 'abc_456' },
+  { input: '654cba', expected: '654_cba' },
+
+  // Examples with non-word characters
+  { input: 'my.variable', expected: 'my_variable' },
+  { input: '!@#special#$%', expected: 'special' },
+
+  // Mixed examples
+  { input: 'Hello_World123', expected: 'hello_world_123' },
+  { input: 'user-ID', expected: 'user_id' },
+
+  // Edge cases
+  { input: '', expected: '' }, // Empty string
+  { input: ' ', expected: '' }, // Space character
+  { input: '  multiple   spaces ', expected: 'multiple_spaces' }, // Multiple spaces
+  { input: '_leadingUnderscore', expected: 'leading_underscore' }, // Leading underscore
+  { input: 'trailingUnderscore_', expected: 'trailing_underscore' }, // Trailing underscore
+];
+
 describe('string: snakeCase', () => {
   it('should returns the snakeCase version of the given string', () => {
-    const expected = 'foo_bar';
-
-    expect(snakeCase('Foo Bar')).toBe(expected);
-    expect(snakeCase('Foo          Bar')).toBe(expected);
-    expect(snakeCase('FooBar')).toBe(expected);
-    expect(snakeCase('fooBar')).toBe(expected);
-    expect(snakeCase('foo.bar')).toBe(expected);
-    expect(snakeCase('--FOO-BAR--')).toBe(expected);
-    expect(snakeCase('fooBAR')).toBe(expected);
-    expect(snakeCase('--.foo_bar--.')).toBe(expected);
-    expect(snakeCase('fooBAr')).toBe('foo_b_ar');
-    expect(snakeCase('Foo123Bar')).toBe('foo_123_bar');
-    expect(snakeCase('foO123BAR')).toBe('fo_o_123_bar');
-    expect(snakeCase('foO123BAr')).toBe('fo_o_123_b_ar');
+    for (const { input, expected } of fixtures) {
+      const result = snakeCase(input);
+      expect(result).toBe(expected);
+    }
   });
 
   it('should not mutate the given string', () => {

@@ -2,9 +2,10 @@
 
 const lowerToUppersPattern = /([a-z])([A-Z]+)/g;
 const uppersToLowerPattern = /([A-Z]+)([A-Z][a-z])/g;
-const numbersPattern = /(.)(\d+)(.)/g;
+const numbersSuffixPattern = /(\D)(\d+)/g;
+const numbersPrefixPattern = /(\d+)(\D)/g;
 const nonWordCharsPattern = /\W+/g;
-const nonWordCharsAtBoundariesPattern = /^\W+|\W+$/g;
+const nonWordCharsAtBoundariesPattern = /^[\W_]+|[\W_]+$/g;
 
 /**
  * A pre-processing function to deal with non-word chars at start/end.
@@ -27,7 +28,9 @@ const handleCapitalizationChanges = (string: string) =>
  * A pre-processing function to deal with numeric chars.
  */
 const handleNumbers = (string: string) =>
-  string.replaceAll(numbersPattern, regexpReplacer);
+  string
+    .replaceAll(numbersSuffixPattern, regexpReplacer)
+    .replaceAll(numbersPrefixPattern, regexpReplacer);
 
 const PRE_PROCESSING_PIPELINE = [
   trimNonWordChars,
