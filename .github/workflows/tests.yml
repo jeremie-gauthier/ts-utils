@@ -22,6 +22,8 @@ jobs:
         run: npm run lint
       - name: Typecheck code
         run: npm run typecheck
+      - name: Documentation validation test
+        run: npm run doctest
       - name: Run tests and collect coverage
         run: npm run coverage
       - name: Upload coverage reports to Codecov
