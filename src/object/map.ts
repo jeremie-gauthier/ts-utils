@@ -21,16 +21,16 @@ export type Iteratee<
  * @param iteratee The function invoked per iteration.
  * @template Key Type of the keys that composed the `source`.
  * @template Value Type of the values that composed the `source`.
- * @template TransformedKey Type of the transformation apply to the keys that composed the `source`.
- * @template TransformedValue Type of the transformation apply to the values that composed the `source`.
+ * @template NewKey Type of the transformation apply to the keys that composed the `source`.
+ * @template NewValue Type of the transformation apply to the values that composed the `source`.
  * @returns Returns the new mapped object.
  */
 export const map = <
   Key extends keyof any,
   Value,
-  TransformedKey extends keyof any,
-  TransformedValue,
+  NewKey extends keyof any,
+  NewValue,
 >(
   source: Readonly<Record<Key, Value>>,
-  iteratee: Iteratee<Key, Value, [TransformedKey, TransformedValue]>,
+  iteratee: Iteratee<Key, Value, [NewKey, NewValue]>,
 ) => fromEntries(entries(source).map(([key, value]) => iteratee([key, value])));
