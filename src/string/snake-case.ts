@@ -12,29 +12,22 @@ const nonWordCharsAtBoundariesPattern = /^\W+|\W+$/g;
 const trimNonWordChars = (string: string) =>
   string.replaceAll(nonWordCharsAtBoundariesPattern, '');
 
+const regexpReplacer = (_: unknown, ...rest: string[]) =>
+  rest.slice(0, -2).join(' ');
+
 /**
  * A pre-processing function to deal with changes of capitalization.
  */
 const handleCapitalizationChanges = (string: string) =>
   string
-    .replaceAll(
-      lowerToUppersPattern,
-      (_, group1: string, group2: string) => `${group1} ${group2}`,
-    )
-    .replaceAll(
-      uppersToLowerPattern,
-      (_, group1: string, group2: string) => `${group1} ${group2}`,
-    );
+    .replaceAll(lowerToUppersPattern, regexpReplacer)
+    .replaceAll(uppersToLowerPattern, regexpReplacer);
 
 /**
  * A pre-processing function to deal with numeric chars.
  */
 const handleNumbers = (string: string) =>
-  string.replaceAll(
-    numbersPattern,
-    (_, group1: string, group2: string, group3: string) =>
-      `${group1} ${group2} ${group3}`,
-  );
+  string.replaceAll(numbersPattern, regexpReplacer);
 
 const PRE_PROCESSING_PIPELINE = [
   trimNonWordChars,
@@ -57,8 +50,7 @@ export const snakeCase = (string: string): string => {
   );
 
   const snakeCased = preProcessedString
-    .split(nonWordCharsPattern)
-    .join('_')
+    .replaceAll(nonWordCharsPattern, '_')
     .toLowerCase();
   return snakeCased;
 };

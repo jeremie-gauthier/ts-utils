@@ -5,6 +5,7 @@ describe('string: snakeCase', () => {
     const expected = 'foo_bar';
 
     expect(snakeCase('Foo Bar')).toBe(expected);
+    expect(snakeCase('Foo          Bar')).toBe(expected);
     expect(snakeCase('FooBar')).toBe(expected);
     expect(snakeCase('fooBar')).toBe(expected);
     expect(snakeCase('foo.bar')).toBe(expected);
