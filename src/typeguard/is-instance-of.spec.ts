@@ -1,6 +1,6 @@
 import { isInstanceOf } from './is-instance-of';
 
-describe('any: isInstanceOf', () => {
+describe('typeguard: isInstanceOf', () => {
   class Person {
     constructor(public readonly name: string) {}
   }

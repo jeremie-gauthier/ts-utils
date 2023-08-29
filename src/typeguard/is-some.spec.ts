@@ -1,6 +1,6 @@
 import { isSome } from './is-some';
 
-describe('any: isSome', () => {
+describe('typeguard: isSome', () => {
   it('should returns false if value is null or undefined', () => {
     // eslint-disable-next-line unicorn/no-null
     expect(isSome(null)).toBe(false);

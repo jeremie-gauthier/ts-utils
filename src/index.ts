@@ -3,5 +3,5 @@ export * from './math';
 export * from './number';
 export * from './object';
 export * from './string';
-export * from './typeguards';
+export * from './typeguard';
 export * from './web';
