@@ -7,6 +7,12 @@ describe('string: capitalize', () => {
     expect(capitalize(string)).toEqual(expected);
   });
 
+  it('should not fail on empty strings', () => {
+    const string = '';
+    const expected = '';
+    expect(capitalize(string)).toEqual(expected);
+  });
+
   it('should not mutate the original string', () => {
     const string = 'paris';
     capitalize(string);
