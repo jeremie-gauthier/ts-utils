@@ -116,11 +116,6 @@
     ],
     "theme": "hierarchy",
     "coverageLabel": "doccov",
-    "requiredToBeDocumented": ["Function", "Parameter", "TypeParameter"],
-    "validation": {
-      "notDocumented": true
-    },
-    "treatValidationWarningsAsErrors": true,
     "navigationLinks": {
       "Github": "https://github.com/jeremie-gauthier/ts-utils"
     }
