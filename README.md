@@ -39,3 +39,7 @@ The project contains **3 CI/CD workflows**:
 
 3. [Infra Stack CD](.github/workflows/stack.yml): is a **CD workflow** that is responsible of **deploying an AWS Stack** with [Cloudformation](https://aws.amazon.com/fr/cloudformation/) (IaC solution).
    _This workflow runs in standalone, everytime a change is made to the stack.yml config file and pushed to the `main` branch._
+
+## Author
+
+[jergauth](https://jergauth.fr)
