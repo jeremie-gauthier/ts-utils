@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { sumBy } from './sum-by';
 
 const numberIteratee = (item: number) => item;

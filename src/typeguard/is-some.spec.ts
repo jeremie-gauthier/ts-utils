@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { isSome } from './is-some';
 
 describe('typeguard: isSome', () => {

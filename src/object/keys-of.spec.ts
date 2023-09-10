@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { keysOf } from './keys-of';
 
 describe('object: keysOf', () => {

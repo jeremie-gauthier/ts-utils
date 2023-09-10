@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { intersection } from './intersection';
 
 describe('array: intersection', () => {

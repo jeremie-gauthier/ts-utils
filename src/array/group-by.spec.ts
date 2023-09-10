@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { groupBy } from './group-by';
 
 const stringIteratee = (string: string) => string.length;
