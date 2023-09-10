@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { zip } from './zip';
 
 describe('array: zip', () => {

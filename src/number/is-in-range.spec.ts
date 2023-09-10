@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { isInRange } from './is-in-range';
 
 describe('number: isInRange', () => {
