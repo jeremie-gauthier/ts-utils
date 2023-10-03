@@ -1,6 +1,7 @@
 /**
  * Capitalize a string.
  * @param string The string to capitalize.
+ * @template Input The exact string type.
  * @returns A new, capitalized, string.
  * @example
  * capitalize("typescript");
