@@ -17,6 +17,14 @@ module.exports = {
   rules: {
     'id-length': ['error', { exceptionPatterns: ['_'] }],
     '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
   },
   parserOptions: {
     ecmaVersion: 'latest',
