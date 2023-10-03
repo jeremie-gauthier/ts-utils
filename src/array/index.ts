@@ -1,3 +1,4 @@
+export { chunk } from './chunk';
 export { groupBy } from './group-by';
 export { intersection } from './intersection';
 export { isEmpty } from './is-empty';
