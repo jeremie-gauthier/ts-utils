@@ -4,4 +4,5 @@ export * from './number';
 export * from './object';
 export * from './string';
 export * from './typeguard';
+export * from './types';
 export * from './web';
