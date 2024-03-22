@@ -3,6 +3,8 @@
  * @param rest The arguments needed by the Class T for instantiation.
  * @template T The class instance returned by constructor.
  */
+
+// biome-ignore lint/suspicious/noExplicitAny: reflecting the typing of a class
 export type Class<T> = new (...rest: any[]) => T;
 
 /**

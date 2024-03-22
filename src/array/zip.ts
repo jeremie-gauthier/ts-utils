@@ -20,7 +20,7 @@ export const zip = <LeftItem, RightItem>(
   const minLength = Math.min(left.length, right.length);
 
   return Array.from({ length: minLength }).map((_, index) => [
-    left[index]!,
-    right[index]!,
+    left[index] as LeftItem,
+    right[index] as RightItem,
   ]);
 };

@@ -1,9 +1,10 @@
 import { entries } from '../object/entries';
+import type { AnyObjectIndexer } from '../types';
 
 /**
  * URL parameters object type.
  */
-export type URLParameters = Record<keyof any, string | number>;
+export type URLParameters = Record<AnyObjectIndexer, string | number>;
 
 /**
  * Create an URL (href) string from dynamic values.

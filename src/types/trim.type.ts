@@ -13,7 +13,10 @@ export type Trim<
   TrimmedChars extends string = Space,
 > = Input extends
   | `${TrimmedChars}${infer InputSubstring}`
-  | `${infer InputSubstring}${TrimmedChars}`
+  | `${
+      // biome-ignore lint/suspicious/noRedeclare: same varname reused for result
+      infer InputSubstring
+    }${TrimmedChars}`
   ? Trim<InputSubstring, TrimmedChars>
   : Input;
 

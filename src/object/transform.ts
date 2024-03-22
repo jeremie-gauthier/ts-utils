@@ -1,3 +1,4 @@
+import type { AnyObjectIndexer } from '../types';
 import { entries } from './entries';
 
 /**
@@ -11,7 +12,11 @@ import { entries } from './entries';
  * @template TransformationResult A user-defined type where to accumulate the transformations.
  * @returns
  */
-export type Iteratee<Key extends keyof any, Value, TransformationResult> = (
+export type Iteratee<
+  Key extends AnyObjectIndexer,
+  Value,
+  TransformationResult,
+> = (
   transformationResult: TransformationResult,
   key: Key,
   value: Value,
@@ -28,7 +33,11 @@ export type Iteratee<Key extends keyof any, Value, TransformationResult> = (
  * @template TransformationResult A user-defined type where to accumulate the transformations.
  * @returns The accumulated value.
  */
-export const transform = <Key extends keyof any, Value, TransformationResult>(
+export const transform = <
+  Key extends AnyObjectIndexer,
+  Value,
+  TransformationResult,
+>(
   source: Readonly<Record<Key, Value>>,
   iteratee: Iteratee<Key, Value, TransformationResult>,
   transformationResult: TransformationResult,

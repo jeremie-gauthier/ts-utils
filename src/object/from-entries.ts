@@ -1,3 +1,5 @@
+import type { AnyObjectIndexer } from '../types';
+
 /**
  * Returns an object created from an array of key-value tuples.
  * (Note: This is just a typed wrapper around the native Object.fromEntries method)
@@ -6,6 +8,6 @@
  * @template Value Type of the values that composed the `source`.
  * @returns The object created from key-values entries.
  */
-export const fromEntries = <Key extends keyof any, Value>(
+export const fromEntries = <Key extends AnyObjectIndexer, Value>(
   entries: Readonly<[Key, Value]>[],
 ): Record<Key, Value> => Object.fromEntries(entries) as Record<Key, Value>;

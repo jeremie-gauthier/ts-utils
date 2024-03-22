@@ -18,7 +18,7 @@ export const intersection = <Item>(...arrays: Item[][]): Item[] => {
   const sets = arrays.slice(1).map((array) => new Set(array));
   const intersectionSet = sets.reduce(
     (intersectionSet, set) =>
-      new Set([...intersectionSet].filter((value) => set.has(value))),
+      new Set(Array.from(intersectionSet).filter((value) => set.has(value))),
     new Set(arrays[0]),
   );
 

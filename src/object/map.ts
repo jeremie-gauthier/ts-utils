@@ -1,3 +1,4 @@
+import type { AnyObjectIndexer } from '../types';
 import { entries } from './entries';
 import { fromEntries } from './from-entries';
 
@@ -10,9 +11,9 @@ import { fromEntries } from './from-entries';
  * @returns The transformation of the `entry` in the same shape (key-value pair).
  */
 export type Iteratee<
-  Key extends keyof any,
+  Key extends AnyObjectIndexer,
   Value,
-  TransformedResult extends [keyof any, unknown],
+  TransformedResult extends [AnyObjectIndexer, unknown],
 > = (entry: [Key, Value]) => TransformedResult;
 
 /**
@@ -26,9 +27,9 @@ export type Iteratee<
  * @returns Returns the new mapped object.
  */
 export const map = <
-  Key extends keyof any,
+  Key extends AnyObjectIndexer,
   Value,
-  NewKey extends keyof any,
+  NewKey extends AnyObjectIndexer,
   NewValue,
 >(
   source: Readonly<Record<Key, Value>>,
