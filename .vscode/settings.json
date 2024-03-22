@@ -1,12 +1,18 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit",
+    "quickfix.biome": "always"
   },
   "editor.tabSize": 2,
-  "prettier.useTabs": false,
-  "editor.insertSpaces": false,
-  "css.validate": false, // Disable css built-in lint
-  "scss.validate": false, // Disable scss lint (optional if using scss)
-  "stylelint.enable": true // Enable sytlelint
+  "editor.insertSpaces": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
 }
