@@ -1,4 +1,5 @@
 export * from './array';
+export * from './data-structure';
 export * from './math';
 export * from './number';
 export * from './object';
