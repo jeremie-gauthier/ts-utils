@@ -21,6 +21,7 @@ type Updator<TData> = (element: TData) => TData;
 /**
  * A data-structure class to represent a binary heap.
  * @template TData The heap's nodes type.
+ * @link https://en.wikipedia.org/wiki/Binary_heap
  */
 export class BinaryHeap<TData> {
   private readonly data: Array<TData> = [];
