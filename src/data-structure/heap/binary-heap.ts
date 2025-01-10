@@ -117,7 +117,7 @@ export class BinaryHeap<TData> {
     }
     if (this.size === 1) {
       this.size -= 1;
-      return this.data[0];
+      return this.data.shift();
     }
 
     const root = this.data[0];
