@@ -61,7 +61,7 @@ export class BinaryHeap<TData> {
 
     while (
       currentIdx > 0 &&
-      // biome-ignore lint/style/noNonNullAssertion: these idx are under control
+      // biome-ignore lint/style/noNonNullAssertion: parent nodes are never supposed to be undefined
       this.comparator(this.data[currentIdx]!, this.data[parentIdx]!) < 0
     ) {
       this.swap(currentIdx, parentIdx);
@@ -77,15 +77,15 @@ export class BinaryHeap<TData> {
 
     if (
       left < this.size &&
-      // biome-ignore lint/style/noNonNullAssertion: these idx are under control
+      // biome-ignore lint/style/noNonNullAssertion: already checked
       this.comparator(this.data[left]!, this.data[startingIdx]!) < 0
     ) {
       smallest = left;
     }
 
     if (
-      left < this.size &&
-      // biome-ignore lint/style/noNonNullAssertion: these idx are under control
+      right < this.size &&
+      // biome-ignore lint/style/noNonNullAssertion: already checked
       this.comparator(this.data[right]!, this.data[smallest]!) < 0
     ) {
       smallest = right;
@@ -102,7 +102,7 @@ export class BinaryHeap<TData> {
    * @param element The node to insert in the heap.
    */
   public insert(element: TData) {
-    this.data.push(element);
+    this.data[this.size] = element;
     this.size += 1;
     this.heapifyUp(this.size - 1);
   }
@@ -117,7 +117,10 @@ export class BinaryHeap<TData> {
     }
     if (this.size === 1) {
       this.size -= 1;
-      return this.data.shift();
+      const data = this.data[this.size];
+      // @ts-expect-error under control idx
+      this.data[this.size] = undefined;
+      return data;
     }
 
     const root = this.data[0];
@@ -165,7 +168,7 @@ export class BinaryHeap<TData> {
    * @returns The searched node or undefined if nothing match findPredicate.
    */
   public search(findPredicate: Finder<TData>) {
-    return this.data.find((element) => findPredicate(element));
+    return this.data.find((element) => element && findPredicate(element));
   }
 
   /**
