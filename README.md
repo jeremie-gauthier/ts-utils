@@ -22,7 +22,7 @@ This library is **free from external dependencies**. Every utils can be copy/pas
 
 The project is split in domain modules. You'll find every utils functions for `string` manipulation under the **string** module, `number` under the **number** module and so on.
 
-I'm applying a **strict level of typing**. Check out my [tsconfig](tsconfig.json) and my [eslint](.eslintrc.cjs) config files.
+I'm applying a **strict level of typing**. Check out my [tsconfig](tsconfig.json).
 
 ### CI/CD
 
