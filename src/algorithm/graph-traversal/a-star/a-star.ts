@@ -14,12 +14,45 @@ function reconstructPath<TData>(arrivalNode: Node<TData>) {
   return path;
 }
 
+/**
+ *The type of function used to tell whether the goal node has been reached or not.
+ *	@param node The node to evaluate.
+ *	@param coord The coord of the node being evaluated.
+ *	@template TData Represents a grid's Cell type.
+ */
 type GoalPredicate<TData> = (node: TData, coord: Coord) => boolean;
+
+/**
+ *	The A* heuristic.
+ *	@param node The node to evaluate.
+ *	@param coord The coord of the node being evaluated.
+ *	@template TData Represents a grid's Cell type.
+ */
 type Heuristic<TData> = (node: TData, coord: Coord) => number;
+
+/**
+ * The optional options object.
+ * @template TData Represents a grid's Cell type.
+ */
 type Options<TData> = {
+  /**
+   * The optional predicate to tell whether a cell is visitable by the algorithm or not.
+   * @param node The node to evaluate.
+   * @template TData Represents a grid's Cell type.
+   */
   canVisitNode?: (node: TData) => boolean;
 };
 
+/**
+ * A data-structure class to represent a binary heap.
+ * @param grid The grid to work on represented as a 2D-array.
+ * @param startCoord The starting coordinate for the algorithm.
+ * @param hasReachGoal The predicate that tells whether the goal node has been reached or not.
+ * @param heuristic The A* heuristic.
+ * @param options Options to customize the A* algorithm.
+ * @template TData Represents a grid's Cell type.
+ * @link https://en.wikipedia.org/wiki/A*_search_algorithm
+ */
 export function AStar<TData>(
   grid: Array<Array<TData>>,
   startCoord: Coord,
