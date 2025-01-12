@@ -1,0 +1,20 @@
+{
+  "grid": [
+    [0, 0, 0, 0, 0, 0, 0],
+    ["S", 1, 2, 3, 4, 5, "G"],
+    [0, 0, 0, 0, 0, 0, 0]
+  ],
+  "solution": [
+    { "row": 1, "column": 0 },
+    { "row": 1, "column": 1 },
+    { "row": 1, "column": 2 },
+    { "row": 1, "column": 3 },
+    { "row": 1, "column": 4 },
+    { "row": 1, "column": 5 },
+    { "row": 1, "column": 6 }
+  ],
+  "positions": {
+    "start": { "row": 1, "column": 0 },
+    "goal": { "row": 1, "column": 6 }
+  }
+}
