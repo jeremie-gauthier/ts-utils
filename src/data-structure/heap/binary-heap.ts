@@ -137,7 +137,7 @@ export class BinaryHeap<TData extends { id: string | number }> {
 
   /**
    * Delete a node from the heap and sort the tree accordingly.
-   * @param findPredicate The predicate to match with the element.
+   * @param id The id of the element to delete.
    */
   public delete(id: TData['id']) {
     const elementIdx = this.existingNodes.get(id);
@@ -164,7 +164,7 @@ export class BinaryHeap<TData extends { id: string | number }> {
 
   /**
    * Search a node from the heap.
-   * @param findPredicate The predicate to match with the element.
+   * @param id The id of the searched element.
    * @returns The searched node or undefined if nothing match findPredicate.
    */
   public search(id: TData['id']) {
@@ -175,8 +175,7 @@ export class BinaryHeap<TData extends { id: string | number }> {
 
   /**
    * Decrease the value of a node in the heap and sort the tree accordingly.
-   * @param findPredicate The predicate to match with the element.
-   * @param updator The function to update the element.
+   * @param data The data of the element to update.
    */
   public decreaseElement(data: TData) {
     const elementIdx = this.existingNodes.get(data.id);
@@ -188,8 +187,7 @@ export class BinaryHeap<TData extends { id: string | number }> {
 
   /**
    * Increase the value of a node in the heap and sort the tree accordingly.
-   * @param findPredicate The predicate to match with the element.
-   * @param updator The function to update the element.
+   * @param data The data of the element to update.
    */
   public increaseElement(data: TData) {
     const elementIdx = this.existingNodes.get(data.id);
