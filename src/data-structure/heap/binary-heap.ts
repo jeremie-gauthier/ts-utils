@@ -5,27 +5,16 @@
 	@template TData The heap's nodes type.
  */
 type Comparator<TData> = (a: TData, b: TData) => number;
-/**
-	The type of function used to find nodes in the heap.
-	@param element A node of the heap.
-	@template TData The heap's nodes type.
- */
-type Finder<TData> = (element: TData) => boolean;
-/**
-	The type of function used to update a node of the heap.
-	@param element A node of the heap.
-	@template TData The heap's nodes type.
- */
-type Updator<TData> = (element: TData) => TData;
 
 /**
  * A data-structure class to represent a binary heap.
  * @template TData The heap's nodes type.
  * @link https://en.wikipedia.org/wiki/Binary_heap
  */
-export class BinaryHeap<TData> {
+export class BinaryHeap<TData extends { id: string | number }> {
   private readonly data: Array<TData> = [];
   private size = 0;
+  private existingNodes = new Map<TData['id'], number>();
 
   /**
    * Construct a binary heap object.
@@ -35,12 +24,17 @@ export class BinaryHeap<TData> {
   constructor(private readonly comparator: Comparator<TData>) {}
 
   private swap(idxA: number, idxB: number) {
-    const tmp = this.data[idxA];
+    // biome-ignore lint/style/noNonNullAssertion: under control idx
+    const tmpA = this.data[idxA]!;
+    // biome-ignore lint/style/noNonNullAssertion: under control idx
+    const tmpB = this.data[idxB]!;
 
     // @ts-expect-error under control idx
     this.data[idxA] = this.data[idxB];
-    // @ts-expect-error under control idx
-    this.data[idxB] = tmp;
+    this.data[idxB] = tmpA;
+
+    this.existingNodes.set(tmpA.id, idxB);
+    this.existingNodes.set(tmpB.id, idxA);
   }
 
   private getParentIdx(idx: number) {
@@ -103,6 +97,7 @@ export class BinaryHeap<TData> {
    */
   public insert(element: TData) {
     this.data[this.size] = element;
+    this.existingNodes.set(element.id, this.size);
     this.size += 1;
     this.heapifyUp(this.size - 1);
   }
@@ -117,18 +112,23 @@ export class BinaryHeap<TData> {
     }
     if (this.size === 1) {
       this.size -= 1;
-      const data = this.data[this.size];
+      // biome-ignore lint/style/noNonNullAssertion: under control idx
+      const data = this.data[this.size]!;
       // @ts-expect-error under control idx
       this.data[this.size] = undefined;
+      this.existingNodes.delete(data.id);
       return data;
     }
 
-    const root = this.data[0];
+    // biome-ignore lint/style/noNonNullAssertion: under control idx
+    const root = this.data[0]!;
     this.size -= 1;
     // @ts-expect-error under control idx
     this.data[0] = this.data[this.size];
     // @ts-expect-error under control idx
     this.data[this.size] = undefined;
+
+    this.existingNodes.delete(root.id);
 
     this.heapifyDown(0);
 
@@ -139,19 +139,19 @@ export class BinaryHeap<TData> {
    * Delete a node from the heap and sort the tree accordingly.
    * @param findPredicate The predicate to match with the element.
    */
-  public delete(findPredicate: Finder<TData>) {
-    const elementIdx = this.data.findIndex((element) => findPredicate(element));
-    if (elementIdx < 0) {
-      return;
-    }
+  public delete(id: TData['id']) {
+    const elementIdx = this.existingNodes.get(id);
+    if (elementIdx === undefined) return;
 
-    // biome-ignore lint/style/noNonNullAssertion: this idx are under control
+    // biome-ignore lint/style/noNonNullAssertion: this idx is under control
     const element = this.data[elementIdx]!;
 
     this.size -= 1;
     this.swap(elementIdx, this.size);
     // @ts-expect-error under control idx
     this.data[this.size] = undefined;
+
+    this.existingNodes.delete(element.id);
 
     // biome-ignore lint/style/noNonNullAssertion: this idx is under control
     const comparison = this.comparator(this.data[elementIdx]!, element);
@@ -167,8 +167,10 @@ export class BinaryHeap<TData> {
    * @param findPredicate The predicate to match with the element.
    * @returns The searched node or undefined if nothing match findPredicate.
    */
-  public search(findPredicate: Finder<TData>) {
-    return this.data.find((element) => element && findPredicate(element));
+  public search(id: TData['id']) {
+    const elementIdx = this.existingNodes.get(id);
+    if (elementIdx === undefined) return;
+    return this.data[elementIdx];
   }
 
   /**
@@ -176,17 +178,11 @@ export class BinaryHeap<TData> {
    * @param findPredicate The predicate to match with the element.
    * @param updator The function to update the element.
    */
-  public decreaseElement(
-    findPredicate: Finder<TData>,
-    updator: Updator<TData>,
-  ) {
-    const elementIdx = this.data.findIndex((element) => findPredicate(element));
-    if (elementIdx < 0) {
-      return;
-    }
+  public decreaseElement(data: TData) {
+    const elementIdx = this.existingNodes.get(data.id);
+    if (elementIdx === undefined) return;
 
-    // biome-ignore lint/style/noNonNullAssertion: this idx is under control
-    this.data[elementIdx] = updator(this.data[elementIdx]!);
+    this.data[elementIdx] = data;
     this.heapifyUp(elementIdx);
   }
 
@@ -195,17 +191,11 @@ export class BinaryHeap<TData> {
    * @param findPredicate The predicate to match with the element.
    * @param updator The function to update the element.
    */
-  public increaseElement(
-    findPredicate: Finder<TData>,
-    updator: Updator<TData>,
-  ) {
-    const elementIdx = this.data.findIndex((element) => findPredicate(element));
-    if (elementIdx < 0) {
-      return;
-    }
+  public increaseElement(data: TData) {
+    const elementIdx = this.existingNodes.get(data.id);
+    if (elementIdx === undefined) return;
 
-    // biome-ignore lint/style/noNonNullAssertion: this idx is under control
-    this.data[elementIdx] = updator(this.data[elementIdx]!);
+    this.data[elementIdx] = data;
     this.heapifyDown(elementIdx);
   }
 }

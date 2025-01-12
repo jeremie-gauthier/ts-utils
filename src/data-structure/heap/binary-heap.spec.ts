@@ -2,9 +2,12 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { BinaryHeap } from './binary-heap';
 
 describe('data-structure: binary-heap (min-heap)', () => {
-  let minHeap: BinaryHeap<number>;
-  function numberComparator(a: number, b: number) {
-    return a - b;
+  let minHeap: BinaryHeap<{ id: number; data: number }>;
+  function numberComparator(
+    a: { id: number; data: number },
+    b: { id: number; data: number },
+  ) {
+    return a.data - b.data;
   }
 
   beforeEach(() => {
@@ -13,36 +16,35 @@ describe('data-structure: binary-heap (min-heap)', () => {
 
   describe('insert', () => {
     it('should insert elements already sorted', () => {
-      minHeap.insert(0);
-      minHeap.insert(1);
-      minHeap.insert(2);
-      minHeap.insert(3);
+      minHeap.insert({ id: 0, data: 0 });
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert({ id: 3, data: 3 });
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [0, 1, 2, 3];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 4;
-
-      expect(minHeap).toStrictEqual(expected);
+      expect(minHeap.extract()).toStrictEqual({ id: 0, data: 0 });
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 3, data: 3 });
+      expect(minHeap.extract()).toBeUndefined();
     });
 
     it('should reorder unsorted elements during insertion', () => {
-      minHeap.insert(2);
-      minHeap.insert(3);
-      minHeap.insert(0);
-      minHeap.insert(6);
-      minHeap.insert(1);
-      minHeap.insert(5);
-      minHeap.insert(4);
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert({ id: 3, data: 3 });
+      minHeap.insert({ id: 0, data: 0 });
+      minHeap.insert({ id: 6, data: 6 });
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 5, data: 5 });
+      minHeap.insert({ id: 4, data: 4 });
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [0, 1, 2, 6, 3, 5, 4];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 7;
-
-      expect(minHeap).toStrictEqual(expected);
+      expect(minHeap.extract()).toStrictEqual({ id: 0, data: 0 });
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 3, data: 3 });
+      expect(minHeap.extract()).toStrictEqual({ id: 4, data: 4 });
+      expect(minHeap.extract()).toStrictEqual({ id: 5, data: 5 });
+      expect(minHeap.extract()).toStrictEqual({ id: 6, data: 6 });
+      expect(minHeap.extract()).toBeUndefined();
     });
   });
 
@@ -68,47 +70,43 @@ describe('data-structure: binary-heap (min-heap)', () => {
     });
 
     it('should pop the first element in the heap when it is alone', () => {
-      minHeap.insert(42);
-      const result = minHeap.extract();
-      expect(result).toEqual(42);
-      expect(result).toEqual(42);
+      minHeap.insert({ id: 42, data: 42 });
+
+      expect(minHeap.extract()).toStrictEqual({ id: 42, data: 42 });
+      expect(minHeap.extract()).toBeUndefined();
     });
 
     it('should pop the first element in the heap and heapify down the heap when it is not alone', () => {
-      minHeap.insert(1);
-      minHeap.insert(2);
-      minHeap.insert(3);
-      const result = minHeap.extract();
-      expect(result).toEqual(1);
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert({ id: 3, data: 3 });
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [2, 3, undefined];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 2;
-      expect(minHeap).toStrictEqual(expected);
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 3, data: 3 });
+      expect(minHeap.extract()).toBeUndefined();
     });
   });
 
   describe('search', () => {
     it('should return the existing element', () => {
-      minHeap.insert(0);
-      minHeap.insert(12);
-      minHeap.insert(21);
-      minHeap.insert(42);
+      minHeap.insert({ id: 0, data: 0 });
+      minHeap.insert({ id: 12, data: 12 });
+      minHeap.insert({ id: 21, data: 21 });
+      minHeap.insert({ id: 42, data: 42 });
 
-      const result = minHeap.search((element) => element === 21);
+      const result = minHeap.search(21);
 
-      expect(result).toEqual(21);
+      expect(result).toStrictEqual({ id: 21, data: 21 });
     });
 
     it('should return undefined when searched element does not exists', () => {
-      minHeap.insert(0);
-      minHeap.insert(12);
-      minHeap.insert(21);
-      minHeap.insert(42);
+      minHeap.insert({ id: 0, data: 0 });
+      minHeap.insert({ id: 12, data: 12 });
+      minHeap.insert({ id: 21, data: 21 });
+      minHeap.insert({ id: 42, data: 42 });
 
-      const result = minHeap.search((element) => element === 40);
+      const result = minHeap.search(40);
 
       expect(result).toBeUndefined();
     });
@@ -116,142 +114,154 @@ describe('data-structure: binary-heap (min-heap)', () => {
 
   describe('delete', () => {
     it('should do nothing when the searched element does not exists', () => {
-      minHeap.insert(1);
-      minHeap.insert(2);
-      minHeap.insert(4);
-      minHeap.insert(8);
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert({ id: 4, data: 4 });
+      minHeap.insert({ id: 8, data: 8 });
 
-      minHeap.delete((e) => e === 7);
+      minHeap.delete(42);
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [1, 2, 4, 8];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 4;
-
-      expect(minHeap).toStrictEqual(expected);
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 4, data: 4 });
+      expect(minHeap.extract()).toStrictEqual({ id: 8, data: 8 });
+      expect(minHeap.extract()).toBeUndefined();
     });
 
     it('should delete the element and heapify up the heap', () => {
-      minHeap.insert(1);
-      minHeap.insert(10);
-      minHeap.insert(5);
-      minHeap.insert(11);
-      minHeap.insert(13);
-      minHeap.insert(7);
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 10, data: 10 });
+      minHeap.insert({ id: 5, data: 5 });
+      minHeap.insert({ id: 11, data: 11 });
+      minHeap.insert({ id: 13, data: 13 });
+      minHeap.insert({ id: 7, data: 7 });
 
-      minHeap.delete((e) => e === 11);
+      minHeap.delete(11);
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [1, 7, 5, 10, 13, undefined];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 5;
-
-      expect(minHeap).toStrictEqual(expected);
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 5, data: 5 });
+      expect(minHeap.extract()).toStrictEqual({ id: 7, data: 7 });
+      expect(minHeap.extract()).toStrictEqual({ id: 10, data: 10 });
+      expect(minHeap.extract()).toStrictEqual({ id: 13, data: 13 });
+      expect(minHeap.extract()).toBeUndefined();
     });
 
     it('should delete the element and heapify down the heap', () => {
-      minHeap.insert(1);
-      minHeap.insert(10);
-      minHeap.insert(5);
-      minHeap.insert(11);
-      minHeap.insert(13);
-      minHeap.insert(17);
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 10, data: 10 });
+      minHeap.insert({ id: 5, data: 5 });
+      minHeap.insert({ id: 11, data: 11 });
+      minHeap.insert({ id: 13, data: 13 });
+      minHeap.insert({ id: 17, data: 17 });
 
-      minHeap.delete((e) => e === 11);
+      minHeap.delete(11);
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [1, 10, 5, 17, 13, undefined];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 5;
-
-      expect(minHeap).toStrictEqual(expected);
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 5, data: 5 });
+      expect(minHeap.extract()).toStrictEqual({ id: 10, data: 10 });
+      expect(minHeap.extract()).toStrictEqual({ id: 13, data: 13 });
+      expect(minHeap.extract()).toStrictEqual({ id: 17, data: 17 });
+      expect(minHeap.extract()).toBeUndefined();
     });
   });
 
   describe('decreaseElement', () => {
     it('should do nothing if the searched element does not exists', () => {
-      minHeap.insert(1);
-      minHeap.insert(2);
-      minHeap.insert(4);
-      minHeap.insert(8);
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert({ id: 4, data: 4 });
+      minHeap.insert({ id: 8, data: 8 });
 
-      minHeap.decreaseElement(
-        (e) => e === 7,
-        (e) => 6,
-      );
+      minHeap.decreaseElement({ id: 42, data: 6 });
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [1, 2, 4, 8];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 4;
-
-      expect(minHeap).toStrictEqual(expected);
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 4, data: 4 });
+      expect(minHeap.extract()).toStrictEqual({ id: 8, data: 8 });
+      expect(minHeap.extract()).toBeUndefined();
     });
 
-    it('should update an element and heapify up the heap', () => {
-      minHeap.insert(1);
-      minHeap.insert(2);
-      minHeap.insert(4);
-      minHeap.insert(8);
+    it('should update an element and heapify up the heap (immutable)', () => {
+      const refElement = { id: 4, data: 4 };
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert(refElement);
+      minHeap.insert({ id: 8, data: 8 });
 
-      minHeap.decreaseElement(
-        (e) => e === 4,
-        () => 0,
-      );
+      minHeap.decreaseElement({ ...refElement, data: 0 });
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [0, 2, 1, 8];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 4;
+      expect(minHeap.extract()).toStrictEqual({ id: 4, data: 0 });
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 8, data: 8 });
+      expect(minHeap.extract()).toBeUndefined();
+    });
 
-      expect(minHeap).toStrictEqual(expected);
+    it('should update an element and heapify up the heap (mutable)', () => {
+      const refElement = { id: 4, data: 4 };
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert(refElement);
+      minHeap.insert({ id: 8, data: 8 });
+
+      refElement.data = 0;
+      minHeap.decreaseElement(refElement);
+
+      expect(minHeap.extract()).toStrictEqual({ id: 4, data: 0 });
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 8, data: 8 });
+      expect(minHeap.extract()).toBeUndefined();
     });
   });
 
   describe('increaseElement', () => {
     it('should do nothing if the searched element does not exists', () => {
-      minHeap.insert(1);
-      minHeap.insert(2);
-      minHeap.insert(4);
-      minHeap.insert(8);
+      minHeap.insert({ id: 1, data: 1 });
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert({ id: 4, data: 4 });
+      minHeap.insert({ id: 8, data: 8 });
 
-      minHeap.increaseElement(
-        (e) => e === 7,
-        (e) => 6,
-      );
+      minHeap.increaseElement({ id: 42, data: 6 });
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [1, 2, 4, 8];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 4;
-
-      expect(minHeap).toStrictEqual(expected);
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 1 });
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 4, data: 4 });
+      expect(minHeap.extract()).toStrictEqual({ id: 8, data: 8 });
+      expect(minHeap.extract()).toBeUndefined();
     });
 
-    it('should update an element and heapify down the heap', () => {
-      minHeap.insert(1);
-      minHeap.insert(4);
-      minHeap.insert(2);
-      minHeap.insert(8);
+    it('should update an element and heapify down the heap (immutable)', () => {
+      const refElement = { id: 1, data: 1 };
+      minHeap.insert(refElement);
+      minHeap.insert({ id: 4, data: 4 });
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert({ id: 8, data: 8 });
 
-      minHeap.increaseElement(
-        (e) => e === 1,
-        () => 9,
-      );
+      minHeap.increaseElement({ ...refElement, data: 9 });
 
-      const expected = new BinaryHeap(numberComparator);
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).data = [2, 4, 9, 8];
-      // biome-ignore lint/suspicious/noExplicitAny: testing
-      (expected as any).size = 4;
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 4, data: 4 });
+      expect(minHeap.extract()).toStrictEqual({ id: 8, data: 8 });
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 9 });
+      expect(minHeap.extract()).toBeUndefined();
+    });
 
-      expect(minHeap).toStrictEqual(expected);
+    it('should update an element and heapify down the heap (mutable)', () => {
+      const refElement = { id: 1, data: 1 };
+      minHeap.insert(refElement);
+      minHeap.insert({ id: 4, data: 4 });
+      minHeap.insert({ id: 2, data: 2 });
+      minHeap.insert({ id: 8, data: 8 });
+
+      refElement.data = 9;
+      minHeap.increaseElement(refElement);
+
+      expect(minHeap.extract()).toStrictEqual({ id: 2, data: 2 });
+      expect(minHeap.extract()).toStrictEqual({ id: 4, data: 4 });
+      expect(minHeap.extract()).toStrictEqual({ id: 8, data: 8 });
+      expect(minHeap.extract()).toStrictEqual({ id: 1, data: 9 });
+      expect(minHeap.extract()).toBeUndefined();
     });
   });
 });
