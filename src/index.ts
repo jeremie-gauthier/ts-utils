@@ -1,3 +1,4 @@
+export * from './algorithm';
 export * from './array';
 export * from './data-structure';
 export * from './math';
