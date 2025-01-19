@@ -44,7 +44,7 @@ type Options<TData> = {
 };
 
 /**
- * A data-structure class to represent a binary heap.
+ * The A* pathfinding algorithm.
  * @param grid The grid to work on represented as a 2D-array.
  * @param startCoord The starting coordinate for the algorithm.
  * @param hasReachGoal The predicate that tells whether the goal node has been reached or not.
