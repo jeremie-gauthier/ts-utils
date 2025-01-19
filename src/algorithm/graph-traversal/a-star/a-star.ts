@@ -72,7 +72,6 @@ export function AStar<TData>(
   while (current) {
     if (hasReachGoal(current.data, current.coord)) {
       const path = reconstructPath(current);
-      // debugTraversal(grid, closedSet, openSet, current.coord, path);
       return path;
     }
 
