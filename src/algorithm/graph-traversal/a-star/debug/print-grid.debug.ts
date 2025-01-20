@@ -1,12 +1,16 @@
 import type { BinaryHeap } from '../../../../data-structure';
 import type { Coord } from '../interfaces/coord.interface';
-import { Node } from '../node';
+
+type Node = {
+  id: string | number;
+};
 
 export function printGrid<TData>(
   grid: Array<Array<TData>>,
-  closedSet: Set<Node['id']>,
-  openSet: BinaryHeap<Node<TData>>,
+  closedSet: Set<string | number>,
+  openSet: BinaryHeap<Node>,
   currentCoord: Coord,
+  getIdentifier: (coord: Coord) => string | number,
   path?: Array<Coord>,
 ) {
   const gridStringified = grid
@@ -25,19 +29,11 @@ export function printGrid<TData>(
             return `\x1b[33m${node}\x1b[39m`;
           }
 
-          if (
-            closedSet.has(
-              new Node({ column: colIdx, row: rowIdx }, grid, -1, -1).id,
-            )
-          ) {
+          if (closedSet.has(getIdentifier({ column: colIdx, row: rowIdx }))) {
             return `\x1b[32m${node}\x1b[39m`;
           }
 
-          if (
-            openSet.search(
-              new Node({ column: colIdx, row: rowIdx }, grid, -1, -1).id,
-            )
-          ) {
+          if (openSet.search(getIdentifier({ column: colIdx, row: rowIdx }))) {
             return `\x1b[31m${node}\x1b[39m`;
           }
 

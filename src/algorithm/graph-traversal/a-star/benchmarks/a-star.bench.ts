@@ -14,16 +14,23 @@ const grid = gridSample.grid;
 const goalCoord = gridSample.positions.goal;
 
 Deno.bench('a-star', () => {
-  AStar(
-    grid,
-    gridSample.positions.start,
-    (_, coord) =>
+  AStar({
+    startCoord: gridSample.positions.start,
+    hasReachGoal: (coord) =>
       coord.row === goalCoord.row && coord.column === goalCoord.column,
-    (_, coord) =>
+    heuristic: (coord) =>
       Math.abs(coord.row - goalCoord.row) +
       Math.abs(coord.column - goalCoord.column),
-    {
-      canVisitNode: (node) => node !== 'X',
-    },
-  );
+    getIdentifier: (coord) => `${coord.row}:${coord.column}`,
+    getNeighbours: (coord: { row: number; column: number }) =>
+      [
+        { row: coord.row - 1, column: coord.column },
+        { row: coord.row, column: coord.column + 1 },
+        { row: coord.row + 1, column: coord.column },
+        { row: coord.row, column: coord.column - 1 },
+      ].filter(
+        ({ row, column }) =>
+          grid[row]?.[column] !== undefined && grid[row][column] !== 'X',
+      ),
+  });
 });
