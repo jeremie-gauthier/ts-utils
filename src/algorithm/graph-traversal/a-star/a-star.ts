@@ -39,7 +39,6 @@ type Heuristic = (coord: Coord) => number;
 
 /**
  *	The callback used to get the unique identifier of a node.
- *	@template TData Represents a grid's Cell type.
  */
 type Node = {
   id: ReturnType<GetIdentifier>;
