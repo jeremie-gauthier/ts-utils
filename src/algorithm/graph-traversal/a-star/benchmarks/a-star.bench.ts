@@ -1,3 +1,4 @@
+import { bench } from 'vitest';
 import { AStar } from '../a-star';
 import grid1000x1000 from '../fixtures/1000x1000.json' with { type: 'json' };
 
@@ -13,7 +14,7 @@ const gridSample = grid1000x1000 as GridSample;
 const grid = gridSample.grid;
 const goalCoord = gridSample.positions.goal;
 
-Deno.bench('a-star', () => {
+bench('a-star', () => {
   AStar({
     startCoord: gridSample.positions.start,
     hasReachGoal: (coord) =>

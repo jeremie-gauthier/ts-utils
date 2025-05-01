@@ -14,6 +14,7 @@ export default defineConfig({
         '**/*.interface.ts',
       ],
       include: ['src/**'],
+      reporter: ['text', 'json', 'html'],
     },
   },
 });
