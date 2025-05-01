@@ -19,4 +19,28 @@ describe('typeguard: isSome', () => {
     expect(isSome({})).toBe(true);
     expect(isSome({ test: 'ok' })).toBe(true);
   });
+
+  it('should handle all falsy values correctly', () => {
+    expect(isSome(false)).toBe(true);
+    expect(isSome(0)).toBe(true);
+    expect(isSome('')).toBe(true);
+    expect(isSome(0n)).toBe(true);
+  });
+
+  it('should handle special number objects', () => {
+    expect(isSome(Number.NaN)).toBe(true);
+    expect(isSome(Number.POSITIVE_INFINITY)).toBe(true);
+    expect(isSome(Number.NEGATIVE_INFINITY)).toBe(true);
+    expect(isSome(Number.MAX_VALUE)).toBe(true);
+    expect(isSome(Number.MIN_VALUE)).toBe(true);
+  });
+
+  it('should handle functions and special objects', () => {
+    expect(isSome(() => {})).toBe(true);
+    expect(isSome(() => {})).toBe(true);
+    expect(isSome(Symbol('test'))).toBe(true);
+    expect(isSome(new Date())).toBe(true);
+    expect(isSome(/(?:)/)).toBe(true);
+    expect(isSome(new Error())).toBe(true);
+  });
 });
