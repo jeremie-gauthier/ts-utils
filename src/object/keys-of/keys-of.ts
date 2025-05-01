@@ -1,4 +1,4 @@
-import type { AnyObjectIndexer } from '../types';
+import type { AnyObjectIndexer } from '../../types';
 
 /**
  * Returns the names of the enumerable string properties and methods of an object.

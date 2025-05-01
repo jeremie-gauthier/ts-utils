@@ -1,5 +1,5 @@
-import { entries } from '../object/entries';
-import type { AnyObjectIndexer } from '../types';
+import { entries } from '../../object/entries/entries';
+import type { AnyObjectIndexer } from '../../types';
 
 /**
  * URL parameters object type.

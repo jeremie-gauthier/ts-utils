@@ -1,5 +1,5 @@
-import type { AnyObjectIndexer } from '../types';
-import { entries } from './entries';
+import type { AnyObjectIndexer } from '../../types';
+import { entries } from '../entries/entries';
 
 /**
  * Iteratee Type.

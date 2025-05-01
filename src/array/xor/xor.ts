@@ -1,4 +1,4 @@
-import { sumBy } from '../math';
+import { sumBy } from '../../math';
 
 /**
  * Creates an array of unique values that are not duplicated in others arrays.

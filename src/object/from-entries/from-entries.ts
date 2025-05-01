@@ -1,4 +1,4 @@
-import type { AnyObjectIndexer } from '../types';
+import type { AnyObjectIndexer } from '../../types';
 
 /**
  * Returns an object created from an array of key-value tuples.

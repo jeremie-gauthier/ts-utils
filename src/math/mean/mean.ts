@@ -1,5 +1,5 @@
-import { isEmpty } from '../array';
-import { sum } from './sum';
+import { isEmpty } from '../../array';
+import { sum } from '../sum/sum';
 
 /**
  * Compute the mean of the given numbers.

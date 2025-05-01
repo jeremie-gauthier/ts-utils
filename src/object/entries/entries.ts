@@ -1,4 +1,4 @@
-import type { AnyObjectIndexer } from '../types';
+import type { AnyObjectIndexer } from '../../types';
 
 /**
  * Returns an array of key/value pairs from an object.

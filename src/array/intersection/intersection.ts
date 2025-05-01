@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/no-array-reduce */
-import { isEmpty } from './is-empty';
+import { isEmpty } from '../is-empty/is-empty';
 
 /**
  * Creates an array of unique values that are included in all given arrays.

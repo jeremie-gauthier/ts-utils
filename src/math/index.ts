@@ -1,3 +1,4 @@
-export { mean } from './mean';
-export { sum } from './sum';
-export { sumBy, type Iteratee as SumByIteratee } from './sum-by';
+export { mean } from './mean/mean';
+export { round } from './round/round';
+export { sumBy } from './sum-by/sum-by';
+export { sum } from './sum/sum';
