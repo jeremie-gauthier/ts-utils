@@ -18,18 +18,17 @@ export const groupBy = <Item>(
   array: Item[],
   iteratee: Iteratee<Item>,
 ): Record<AnyObjectIndexer, Item[]> => {
-  const aggregate: Partial<Record<AnyObjectIndexer, Item[]>> = {};
+  const map = new Map<AnyObjectIndexer, Item[]>();
 
   for (const item of array) {
-    const iterateeKey = iteratee(item);
-
-    const value = aggregate[iterateeKey];
-    if (value) {
-      value.push(item);
+    const key = iteratee(item);
+    const group = map.get(key);
+    if (group) {
+      group.push(item);
     } else {
-      aggregate[iterateeKey] = [item];
+      map.set(key, [item]);
     }
   }
 
-  return aggregate as Record<AnyObjectIndexer, Item[]>;
+  return Object.fromEntries(map.entries()) as Record<AnyObjectIndexer, Item[]>;
 };

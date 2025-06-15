@@ -10,12 +10,9 @@ export const chunk = <Item>(array: Item[], size: number): Item[][] => {
     return [];
   }
 
-  const countChunks = Math.ceil(array.length / size);
-
-  return Array.from({ length: countChunks }).map((_, index) => {
-    const sliceStartIndex = index * size;
-    const sliceEndIndex = sliceStartIndex + size;
-
-    return array.slice(sliceStartIndex, sliceEndIndex);
-  });
+  const result: Item[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
 };

@@ -1,5 +1,3 @@
-import { sumBy } from '../../math';
-
 /**
  * Creates an array of unique values that are not duplicated in others arrays.
  * @param arrays The arrays to inspect.
@@ -10,18 +8,21 @@ import { sumBy } from '../../math';
  * // => [1, 3]
  */
 export const xor = <Item>(...arrays: Item[][]): Item[] => {
-  const sets = arrays.map((array) => new Set(array));
+  if (arrays.length === 0) return [];
+  if (arrays.length === 1) return [...new Set(arrays[0])];
 
-  const xorSet = new Set<Item>();
+  const allItems = new Set<Item>();
+  const duplicates = new Set<Item>();
 
-  for (const set of sets) {
-    for (const value of set) {
-      const valueOccurence = sumBy((set) => (set.has(value) ? 1 : 0), ...sets);
-      if (valueOccurence === 1) {
-        xorSet.add(value);
+  for (const array of arrays) {
+    const currentSet = new Set(array);
+    for (const item of currentSet) {
+      if (allItems.has(item)) {
+        duplicates.add(item);
       }
+      allItems.add(item);
     }
   }
 
-  return [...xorSet];
+  return [...allItems].filter((item) => !duplicates.has(item));
 };
