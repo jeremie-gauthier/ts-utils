@@ -12,6 +12,7 @@
     "format": "biome format src/ --write",
     "test": "vitest",
     "coverage": "vitest --coverage",
+    "bench": "vitest bench",
     "prepare": "husky"
   },
   "devDependencies": {

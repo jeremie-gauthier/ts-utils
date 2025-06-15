@@ -7,4 +7,4 @@
  * // => "tpircSepyT"
  */
 export const reverse = (string: string): string =>
-  [...string].reverse().join('');
+  string.split('').reverse().join('');
