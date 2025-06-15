@@ -10,6 +10,7 @@ export default defineConfig({
         '**/*.spec.ts',
         '**/*.type.ts',
         '**/benchmarks/**',
+        '**/*.bench.ts',
         '**/debug/**',
         '**/*.interface.ts',
       ],
