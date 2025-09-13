@@ -3,7 +3,7 @@
  * @param numbers The numbers used to compute the median.
  * @returns The median of the `numbers`.
  */
-export function median(...numbers: number[]): number {
+export const median = (...numbers: number[]): number => {
   if (numbers.length === 0) {
     throw new Error('Input array is empty');
   }
@@ -18,4 +18,4 @@ export function median(...numbers: number[]): number {
   }
   // biome-ignore lint/style/noNonNullAssertion: <explanation>
   return (sortedNumbers[half - 1]! + sortedNumbers[half]!) / 2;
-}
+};

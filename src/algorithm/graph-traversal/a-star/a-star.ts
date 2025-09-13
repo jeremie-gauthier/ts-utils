@@ -59,7 +59,7 @@ type Node = {
  * @template TData Represents a grid's Cell type.
  * @link https://en.wikipedia.org/wiki/A*_search_algorithm
  */
-export function AStar({
+export const AStar = ({
   startCoord,
   hasReachGoal,
   getNeighbours,
@@ -71,7 +71,7 @@ export function AStar({
   getNeighbours: GetNeighbours;
   getIdentifier: GetIdentifier;
   heuristic: Heuristic;
-}) {
+}) => {
   const openSet = new BinaryHeap<Node>((a, b) => a.heuristic - b.heuristic);
   const startNode: Node = {
     id: getIdentifier(startCoord),
@@ -119,4 +119,4 @@ export function AStar({
     closedSet.add(current.id);
     current = openSet.extract();
   }
-}
+};
