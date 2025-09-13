@@ -1,5 +1,8 @@
 /**
  * Compute the median of the given numbers.
+ *
+ * The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+ *
  * @param numbers The numbers used to compute the median.
  * @returns The median of the `numbers`.
  */
